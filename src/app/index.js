@@ -1,14 +1,17 @@
 const Koa = require('koa');
-const Router = require('koa-router');
+const KoaBody = require('koa-body');
+
+const router = require('../router');
+const errorHandler = require('./errorHandler');
 
 const app = new Koa();
 
-const router = new Router();
+app
+  .use(KoaBody())
+  .use(router.routes())
+  .use(router.allowedMethods());
 
-router.get('/', (ctx, next) => {
-  ctx.body = 'Hello World';
-});
-
-app.use(router.routes());
+// 全局错误处理
+app.on('error', errorHandler);
 
 module.exports = app;
