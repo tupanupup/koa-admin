@@ -13,7 +13,8 @@ const {
 
 const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
   host: MYSQL_HOST,
-  dialect: 'mysql'
+  dialect: 'mysql',
+  timezone: '+08:00'
 });
 
 seq.authenticate().then(() => {
