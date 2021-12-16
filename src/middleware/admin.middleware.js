@@ -14,13 +14,9 @@ const cryptPassword = async (ctx, next) => {
 // 验证用户是否登录
 const verifyLogin = async (ctx, next) => {
   const { username, password } = ctx.request.body;
-  console.log('username ', username);
-  console.log('获取到的password ', password);
 
   try {
     const result = await getInfo({ username });
-    console.log('result的password ', result.password)
-    console.log('比较的结果是 ', bcrypt.compareSync(password, result.password));
     if (!bcrypt.compareSync(password, result.password)) {
       ctx.app.emit('error', userDoesNotExist, ctx);
       return;
