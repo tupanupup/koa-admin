@@ -13,6 +13,6 @@ const router = new Router({
 router.post('/register', cryptPassword, register);
 
 // 用户登录
-router.post('/login', cryptPassword, verifyLogin, login);
+router.post('/login', verifyLogin, login);
 
 module.exports = router;
