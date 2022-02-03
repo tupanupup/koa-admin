@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 
 const { getInfo } = require('../service/admin.service');
-const {userDoesNotExist, userLoginError} = require('../constants/err.type');
+const { userDoesNotExist, userLoginError, verifyTokenError } = require('../constants/err.type');
 
 // 密码加密。将加密后的密码存到 ctx.request.body.password 中，交由下一个中间件使用
 const cryptPassword = async (ctx, next) => {
@@ -36,7 +36,18 @@ const verifyLogin = async (ctx, next) => {
   await next();
 }
 
+// 验证请求头中是否携带token
+const verifyToken = async (ctx, next) => {
+  const headers = ctx.request.headers;
+  const { authorization } = headers;
+  if (!authorization) {
+    ctx.app.emit('error', verifyTokenError, ctx);
+  }
+  await next();
+}
+
 module.exports = {
   cryptPassword,
-  verifyLogin
+  verifyLogin,
+  verifyToken,
 };
