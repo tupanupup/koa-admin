@@ -47,6 +47,11 @@ module.exports = {
     code: '10102',
     message: '无效的token',
     result: ''
+  },
+  verifyTokenError: {
+    code: '10103',
+    message: '没有携带token',
+    result: '',
   }
 };
 
