@@ -15,8 +15,8 @@ const RolePermissionRelation = seq.define('role_permission_relation', {
   }
 });
 
-seq.sync({ force: true }).then(() => {
-  console.log('角色与权限关联模型创建成功！')
-});
+// seq.sync({ force: true }).then(() => {
+//   console.log('角色与权限关联模型创建成功！')
+// });
 
 module.exports = RolePermissionRelation;
