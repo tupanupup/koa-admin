@@ -1,5 +1,12 @@
+###
+// 获取用户信息接口
+GET http://localhost:3000/admin/getUserInfo
+Accept: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImljb24iOm51bGwsImVtYWlsIjpudWxsLCJuaWNrX25hbWUiOm51bGwsIm5vdGUiOm51bGwsImxvZ2luX3RpbWUiOm51bGwsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlX3RpbWUiOiIyMDIyLTAxLTMxVDEzOjIwOjA0LjAwMFoiLCJ1cGRhdGVfdGltZSI6IjIwMjItMDEtMzFUMTM6MjA6MDQuMDAwWiIsImlhdCI6MTY0MzgxMDY2MywiZXhwIjoxNjQzODk3MDYzfQ.Q_06bwzjtT3gN1uC48EPAfJoBTW1XqS7aTtU6JzHvLQ
+
+###
 // 登录接口
-POST http://localhost:8000/admin/login
+POST http://localhost:3000/admin/login
 Content-Type: application/json
 
 {
@@ -9,7 +16,7 @@ Content-Type: application/json
 
 ###
 // 注册接口
-POST http://localhost:8000/admin/register
+POST http://localhost:3000/admin/register
 Content-Type: application/json
 
 {
