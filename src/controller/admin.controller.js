@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 const { create, getInfo } = require('../service/admin.service');
+const { getRolesByAdminId } = require('../service/admin_role_relation.service');
 const { JWT_PRIVATE_KEY, TOKEN_EXPIRES_IN } = require('../config/config.default');
-const {userRegisterError} = require('../constants/err.type');
+const { userRegisterError } = require('../constants/err.type');
 
 class AdminController {
   // 注册用户
@@ -34,6 +35,7 @@ class AdminController {
 
     try {
       // 获取用户信息，剔除掉 password
+      // eslint-disable-next-line no-unused-vars
       const { password, ...result } = await getInfo({ username });
       // 生成 token 并返回
       const token = jwt.sign(result, JWT_PRIVATE_KEY, {
@@ -49,6 +51,23 @@ class AdminController {
     } catch (error) {
       console.error(error);
       console.log('生成token失败');
+    }
+  }
+
+  // 获取用户信息。将用户信息和对应的角色信息一起返回
+  async getUserInfo(ctx) {
+    const { authorization } = ctx.request.headers;
+    const decode = jwt.decode(authorization, {complete: true});
+    const { payload: userInfo } = decode;
+    // 查询用户对应的角色列表
+    const roles = await getRolesByAdminId(userInfo.id);
+    ctx.body = {
+      code: 0,
+      message: '查询成功',
+      result: {
+        ...userInfo,
+        roles,
+      },
     }
   }
 }
