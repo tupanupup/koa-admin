@@ -4,7 +4,6 @@ class AdminService {
   // 创建用户
   async create(username, password) {
     const result = await User.create({username, password});
-    console.log(result);
     return result.dataValues;
   }
 
