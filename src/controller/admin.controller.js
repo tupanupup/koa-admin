@@ -66,7 +66,11 @@ class AdminController {
       message: '查询成功',
       result: {
         ...userInfo,
-        roles,
+        userId: userInfo.id,
+        roles: roles.map((item) => ({
+          roleName: item.name,
+          value: item.name,
+        })),
       },
     }
   }
