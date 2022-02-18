@@ -16,7 +16,8 @@ class AdminService {
     email && Object.assign(whereOpt, { email });
     nick_name && Object.assign(whereOpt, { nick_name });
     const result = await User.findOne({
-      attributes: ['id', 'username', 'password', 'icon', 'email', 'nick_name', 'note', 'login_time', 'status', 'create_time', 'update_time'],
+      // ['home_path', 'homePath'] 相当于 SELECT home_path as homePath
+      attributes: ['id', 'username', 'password', 'icon', 'email', 'nick_name', 'note', 'login_time', 'status', 'create_time', 'update_time', ['home_path', 'homePath']],
       where: whereOpt
     });
     return result ? result.dataValues : null;
