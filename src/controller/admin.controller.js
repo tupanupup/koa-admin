@@ -58,7 +58,9 @@ class AdminController {
   async getUserInfo(ctx) {
     const { authorization } = ctx.request.headers;
     const decode = jwt.decode(authorization, {complete: true});
-    const { payload: userInfo } = decode;
+    const id = decode.payload;
+    // 查询用户信息
+    const userInfo = await getInfo(id);
     // 查询用户对应的角色列表
     const roles = await getRolesByAdminId(userInfo.id);
     ctx.body = {
