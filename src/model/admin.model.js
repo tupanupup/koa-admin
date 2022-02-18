@@ -28,6 +28,10 @@ const Admin = seq.define('admin', {
     type: DataTypes.STRING(200),
     comment: '昵称'
   },
+  home_path: {
+    type: DataTypes.STRING(200),
+    comment: '用户主页路径'
+  },
   note: {
     type: DataTypes.STRING(500),
     comment: '备注信息'
