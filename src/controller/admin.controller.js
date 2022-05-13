@@ -76,6 +76,15 @@ class AdminController {
       },
     }
   }
+
+  // 修改头像
+  async changeAvatar(ctx) {
+    ctx.body = {
+      code: 0,
+      message: '上传成功',
+      result: `/upload/${ctx.request.file.filename}`,
+    };
+  }
 }
 
 module.exports = new AdminController();
